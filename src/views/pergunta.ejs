@@ -1,0 +1,36 @@
+<!-- Incluir o header das páginas -->
+<%- include('./includes/header.ejs') %>
+
+    <div class="container mt-5">
+        <hr>
+        <h1>
+            <%= pergunta.title %>
+        </h1>
+        <p>
+            <%= pergunta.describe %>
+        </p>
+        <hr>
+        <form action="/responder" method="POST">
+            <h3>Responda</h3>
+            <label for="body">Resposta:</label>
+            <textarea name="corpo" id="body" class="form-control" placeholder="Digite sua resposta"></textarea>
+            <input type="hidden" name="idPergunta" value="<%= pergunta.id %> ">
+            <button type="submit" class="btn btn-primary mt-2">Responder</button>
+        </form>
+
+        <hr>
+        <h3>Respostas</h3>
+        <hr>
+
+        <% respostas.forEach(resposta => { %>
+            <div class="card mt-3">
+                <div class="card-body">
+                    <%= resposta.corpo %> 
+                </div>
+            </div>
+        <% }) %>
+    </div>
+
+
+    <!-- Incluir o footer das páginas -->
+    <%- include('./includes/footer.ejs') %>
